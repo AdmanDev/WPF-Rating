@@ -1,0 +1,19 @@
+﻿<UserControl x:Name="userControl" x:Class="Admandev.Rating.Rating"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Admandev.Rating"
+             mc:Ignorable="d"
+             MouseDown="Rating_MouseDown" MouseLeave="Rating_MouseLeave" VerticalAlignment="Top" HorizontalAlignment="Left"
+             ToolTipService.ShowDuration="30000" ToolTipService.BetweenShowDelay="1" ToolTipService.IsEnabled="{Binding Path=ShowToolTip, ElementName=userControl}">
+    <UserControl.ToolTip>
+        <Label x:Name="LB_ToolTip"/>
+    </UserControl.ToolTip>
+    <UserControl.Background>
+        <SolidColorBrush Color="White" Opacity="0.0001"/>
+    </UserControl.Background>
+    <StackPanel x:Name="SP_Stars"  Orientation="Horizontal">
+
+    </StackPanel>
+</UserControl>

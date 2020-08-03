@@ -1,0 +1,24 @@
+﻿<Window x:Class="TestApp.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TestApp"
+        xmlns:rat="clr-namespace:Admandev.Rating;assembly=Admandev.Rating"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="85.553" Width="279.26" Background="White" WindowStartupLocation="CenterScreen">
+    <Grid>
+        <rat:Rating Name="rating" 
+                    StarSize="40"
+                    StarBorderSize="0.5" 
+                    NormalStarColor="White" 
+                    SelectedStarColor="Red" 
+                    StarsCount="5" 
+                    StarSpacing="5" 
+                    ReadOnly="True" 
+                    Rate="2.7"
+                    RatingMode="Exact" 
+                    ShowToolTip="True"
+                    RateEvent="Rating_RateEvent"/>
+    </Grid>
+</Window>
