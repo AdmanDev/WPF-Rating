@@ -13,7 +13,7 @@
     <UserControl.Background>
         <SolidColorBrush Color="White" Opacity="0.0001"/>
     </UserControl.Background>
-    <StackPanel x:Name="SP_Stars"  Orientation="Horizontal">
+    <StackPanel x:Name="SP_Symbols"  Orientation="Horizontal">
 
     </StackPanel>
 </UserControl>

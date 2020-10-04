@@ -9,7 +9,7 @@ namespace Admandev.Rating
     public partial class Rating : UserControl
     {
         //Variables
-        private readonly List<Star> stars;
+        private readonly List<Symbol> Symbols;
 
         //Delegate
         public delegate void RateDelegate(double rate, double percentRate);
@@ -19,72 +19,72 @@ namespace Admandev.Rating
 
         #region Properties
 
-        public static readonly DependencyProperty normalStarColorProp = DependencyProperty.Register("NormalStarColor",
+        public static readonly DependencyProperty normalSymbolColorProp = DependencyProperty.Register("NormalSymbolColor",
                                                                   typeof(Brush),
                                                                   typeof(Rating),
                                                                   new PropertyMetadata(
                                                                       new SolidColorBrush(Colors.Transparent),
-                                                                      NormalStarColorChanged));
+                                                                      NormalSymbolColorChanged));
 
-        public Brush NormalStarColor
+        public Brush NormalSymbolColor
         {
-            get => (Brush)GetValue(normalStarColorProp);
-            set => SetValue(normalStarColorProp, value);
+            get => (Brush)GetValue(normalSymbolColorProp);
+            set => SetValue(normalSymbolColorProp, value);
         }
 
-        public static readonly DependencyProperty selectedStarColorProp = DependencyProperty.Register("SelectedStarColor",
+        public static readonly DependencyProperty selectedSymbolColorProp = DependencyProperty.Register("SelectedSymbolColor",
                                                                   typeof(Brush),
                                                                   typeof(Rating),
                                                                   new PropertyMetadata(
                                                                       new SolidColorBrush(Colors.Red),
-                                                                      SelectedStarColorChanged));
+                                                                      SelectedSymbolColorChanged));
 
-        public Brush SelectedStarColor 
+        public Brush SelectedSymbolColor 
         { 
-            get => (Brush)GetValue(selectedStarColorProp);
-            set => SetValue(selectedStarColorProp, value);
+            get => (Brush)GetValue(selectedSymbolColorProp);
+            set => SetValue(selectedSymbolColorProp, value);
         }
 
-        public static readonly DependencyProperty starCountProp = DependencyProperty.Register("StarsCount",
+        public static readonly DependencyProperty SymbolCountProp = DependencyProperty.Register("SymbolsCount",
                                                                 typeof(int),
                                                                 typeof(Rating),
-                                                                new PropertyMetadata(5, StarsCountChanged));
-        public int StarsCount 
+                                                                new PropertyMetadata(5, SymbolsCountChanged));
+        public int SymbolsCount 
         {
-            get => (int)GetValue(starCountProp);
-            set => SetValue(starCountProp, value);
+            get => (int)GetValue(SymbolCountProp);
+            set => SetValue(SymbolCountProp, value);
         }
 
-        public static readonly DependencyProperty starSpacingProp = DependencyProperty.Register("StarSpacing",
+        public static readonly DependencyProperty SymbolSpacingProp = DependencyProperty.Register("SymbolSpacing",
                                                                     typeof(double),
                                                                     typeof(Rating),
-                                                                    new PropertyMetadata(5d, StarSpacingChanged));
-        public double StarSpacing 
+                                                                    new PropertyMetadata(5d, SymbolSpacingChanged));
+        public double SymbolSpacing 
         {
-            get => (double)GetValue(starSpacingProp);
-            set => SetValue(starSpacingProp, value);
+            get => (double)GetValue(SymbolSpacingProp);
+            set => SetValue(SymbolSpacingProp, value);
         }
 
-        public static readonly DependencyProperty starSizeProp = DependencyProperty.Register("StarSize",
+        public static readonly DependencyProperty SymbolSizeProp = DependencyProperty.Register("SymbolSize",
                                                                  typeof(double),
                                                                  typeof(Rating),
-                                                                 new PropertyMetadata(40d, StarSizeChanged));
-        public double StarSize 
+                                                                 new PropertyMetadata(40d, SymbolSizeChanged));
+        public double SymbolSize 
         {
-            get => (double)GetValue(starSizeProp); 
-            set => SetValue(starSizeProp, value);
+            get => (double)GetValue(SymbolSizeProp); 
+            set => SetValue(SymbolSizeProp, value);
         }
 
-        public static readonly DependencyProperty starBorderSizeProp = DependencyProperty.Register(
-                                                                       "StarBorderSize",
+        public static readonly DependencyProperty SymbolBorderSizeProp = DependencyProperty.Register(
+                                                                       "SymbolBorderSize",
                                                                        typeof(double),
                                                                        typeof(Rating),
-                                                                       new PropertyMetadata(0.5d, StarBorderSizeChanged));
+                                                                       new PropertyMetadata(0.5d, SymbolBorderSizeChanged));
 
-        public double StarBorderSize 
+        public double SymbolBorderSize 
         {
-            get => (double)GetValue(starBorderSizeProp);
-            set => SetValue(starBorderSizeProp, value); 
+            get => (double)GetValue(SymbolBorderSizeProp);
+            set => SetValue(SymbolBorderSizeProp, value); 
         }
 
         public static readonly DependencyProperty readOnlyProp = DependencyProperty.Register("ReadOnly",
@@ -95,6 +95,16 @@ namespace Admandev.Rating
         { 
             get => (bool)GetValue(readOnlyProp); 
             set => SetValue(readOnlyProp, value);
+        }
+
+        public static readonly DependencyProperty lockAfterRatingProp = DependencyProperty.Register("LockAfterRating",
+                                                         typeof(bool),
+                                                         typeof(Rating),
+                                                         new PropertyMetadata(true));
+        public bool LockAfterRating
+        {
+            get => (bool)GetValue(lockAfterRatingProp);
+            set => SetValue(lockAfterRatingProp, value);
         }
 
         public static readonly DependencyProperty ratingModeProp = DependencyProperty.Register("RatingMode",
@@ -121,7 +131,7 @@ namespace Admandev.Rating
         {
             get
             {
-                return Rate / stars.Count;
+                return Rate / Symbols.Count;
             }
         }
 
@@ -135,6 +145,16 @@ namespace Admandev.Rating
             set => SetValue(showToolTipProp, value);
         }
 
+        public static readonly DependencyProperty symbolProp = DependencyProperty.Register("SymbolType",
+                                                                    typeof(Symbols),
+                                                                    typeof(Rating),
+                                                                    new PropertyMetadata(Admandev.Rating.Symbols.Star, SymbolTypeChanged));  
+        public Symbols SymbolType
+        {
+            get => (Symbols)GetValue(symbolProp);
+            set => SetValue(symbolProp, value);
+        }
+
         #endregion
 
         //Constructor
@@ -142,80 +162,80 @@ namespace Admandev.Rating
         {
             InitializeComponent();
 
-            stars = new List<Star>();
+            Symbols = new List<Symbol>();
 
-            AddStars(StarsCount);
+            AddSymbols(SymbolsCount);
         }
 
-        //Add configured stars
-        private void AddStars(int count)
+        //Add configured Symbols
+        private void AddSymbols(int count)
         {
             for (int i = 0; i < count; i++)
             {
-                Star star = new Star(this)
+                Symbol Symbol = new Symbol(this)
                 {
-                    Height = StarSize,
-                    Width = StarSize
+                    Height = SymbolSize,
+                    Width = SymbolSize
                 };
-                star.SetNormalStarColor(NormalStarColor);
-                star.SetSelectedStarColor(SelectedStarColor);
-                star.SetStarBorderSize(StarBorderSize);
-                star.OnValueChanged += Star_OnValueChanged;
+                Symbol.SetNormalSymbolColor(NormalSymbolColor);
+                Symbol.SetSelectedSymbolColor(SelectedSymbolColor);
+                Symbol.SetSymbolBorderSize(SymbolBorderSize);
+                Symbol.OnValueChanged += Symbol_OnValueChanged;
 
-                if(stars.Count > 0)
+                if(Symbols.Count > 0)
                 {
-                    star.Margin = new Thickness(StarSpacing, 0, 0, 0);
+                    Symbol.Margin = new Thickness(SymbolSpacing, 0, 0, 0);
                 }
 
-                stars.Add(star);
-                this.SP_Stars.Children.Add(star);
+                Symbols.Add(Symbol);
+                this.SP_Symbols.Children.Add(Symbol);
             }
         }
 
-        //Remove all stars from StackPanel
-        private void ClearStars()
+        //Remove all Symbols from StackPanel
+        private void ClearSymbols()
         {
-            stars.Clear();
-            this.SP_Stars.Children.Clear();
+            Symbols.Clear();
+            this.SP_Symbols.Children.Clear();
         }
 
-        //Update stars values whenever a star value is changing
-        private void Star_OnValueChanged(Star star, double value)
+        //Update Symbols values whenever a Symbol value is changing
+        private void Symbol_OnValueChanged(Symbol Symbol, double value)
         {
             double tmpRate = value;
-            int starIndex = stars.IndexOf(star);
+            int SymbolIndex = Symbols.IndexOf(Symbol);
 
-            for (int i = 0; i < starIndex; i++)
+            for (int i = 0; i < SymbolIndex; i++)
             {
                 tmpRate++;
             }
 
-            FillStars(tmpRate);
+            FillSymbols(tmpRate);
 
             this.LB_ToolTip.Content = Math.Round(tmpRate, 2);
         }
 
-        private void FillStars(double starsCount)
+        private void FillSymbols(double SymbolsCount)
         {
-            if (starsCount > stars.Count)
+            if (SymbolsCount > Symbols.Count)
             {
-                starsCount = stars.Count;
+                SymbolsCount = Symbols.Count;
             }
 
-            double tmpRate = starsCount;
-            for (int i = 1; i <= stars.Count; i++)
+            double tmpRate = SymbolsCount;
+            for (int i = 1; i <= Symbols.Count; i++)
             {
                 if (tmpRate >= 1)
                 {
-                    stars[i - 1].SetValue(1);
+                    Symbols[i - 1].SetValue(1);
                 }
                 else if (tmpRate > 0)
                 {
-                    stars[i - 1].SetValue(tmpRate);
+                    Symbols[i - 1].SetValue(tmpRate);
                 }
                 else
                 {
-                    stars[i - 1].SetValue(0);
+                    Symbols[i - 1].SetValue(0);
                 }
 
                 tmpRate--;
@@ -227,80 +247,83 @@ namespace Admandev.Rating
         //vote
         private void Rating_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-            ReadOnly = true;
-
-            double rate = 0;
-            foreach (Star star in stars)
+            if (LockAfterRating)
             {
-                rate += star.Value;
+                ReadOnly = true;
+            }
+            
+            double rate = 0;
+            foreach (Symbol Symbol in Symbols)
+            {
+                rate += Symbol.Value;
             }
 
             this.Rate = rate;
-            RateEvent.Invoke(rate, PercentRate);
+            RateEvent?.Invoke(rate, PercentRate);
         }
 
         //On mouse leave, reset displayed rate 
         private void Rating_MouseLeave(object sender, System.Windows.Input.MouseEventArgs e)
         {
-            FillStars(Rate);   
+            FillSymbols(Rate);   
         }
 
         #region Properties events
 
-        private static void NormalStarColorChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        private static void NormalSymbolColorChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            ((Rating)d).OnNormalStarColorChanged();
+            ((Rating)d).OnNormalSymbolColorChanged();
         }
 
-        //Update normal stars color
-        private void OnNormalStarColorChanged()
+        //Update normal Symbols color
+        private void OnNormalSymbolColorChanged()
         {
-            foreach (Star star in stars)
+            foreach (Symbol Symbol in Symbols)
             {
-                star.SetNormalStarColor(NormalStarColor);
+                Symbol.SetNormalSymbolColor(NormalSymbolColor);
             }
         }
 
-        private static void SelectedStarColorChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        private static void SelectedSymbolColorChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            ((Rating)d).OnSelectedStarColorChanged();
+            ((Rating)d).OnSelectedSymbolColorChanged();
         }
 
-        //Update selected stars color
-        private void OnSelectedStarColorChanged()
+        //Update selected Symbols color
+        private void OnSelectedSymbolColorChanged()
         {
-            foreach (Star star in stars)
+            foreach (Symbol Symbol in Symbols)
             {
-                star.SetSelectedStarColor(SelectedStarColor);
+                Symbol.SetSelectedSymbolColor(SelectedSymbolColor);
             }
         }
 
-        private static void StarsCountChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        private static void SymbolsCountChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            ((Rating)d).OnStarsCountChanged();
+            ((Rating)d).OnSymbolsCountChanged();
         }
 
-        //Update displayed stars count
-        private void OnStarsCountChanged()
+        //Update displayed Symbols count
+        private void OnSymbolsCountChanged()
         {
-            ClearStars();
-            AddStars(StarsCount);
-            FillStars(Rate);
+            ClearSymbols();
+            AddSymbols(SymbolsCount);
+            FillSymbols(Rate);
         }
 
-        private static void StarSpacingChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        private static void SymbolSpacingChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            ((Rating)d).OnStarSpacingChanged();
+            ((Rating)d).OnSymbolSpacingChanged();
         }
 
-        //Update stars margins
-        private void OnStarSpacingChanged()
+        //Update Symbols margins
+        private void OnSymbolSpacingChanged()
         {
-            for(int i = 0; i < stars.Count;  i++)
+            for(int i = 0; i < Symbols.Count;  i++)
             {
                 if(i > 0)
                 {
-                    stars[i].Margin = new Thickness(StarSpacing, 0, 0, 0);
+                    Symbols[i].Margin = new Thickness(SymbolSpacing, 0, 0, 0);
                 }
             }
         }
@@ -310,37 +333,50 @@ namespace Admandev.Rating
             ((Rating)d).OnRatePropertyValueChanged();
         }
 
-        //Update stars values according the new rate
+        //Update Symbols values according the new rate
         private void OnRatePropertyValueChanged()
         {
-            FillStars(Rate);
+            FillSymbols(Rate);
         }
 
-        private static void StarSizeChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        private static void SymbolSizeChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            ((Rating)d).OnStarSizeChanged();
+            ((Rating)d).OnSymbolSizeChanged();
         }
 
-        //Update stars size
-        private void OnStarSizeChanged()
+        //Update Symbols size
+        private void OnSymbolSizeChanged()
         {
-            foreach (Star star in stars)
+            foreach (Symbol Symbol in Symbols)
             {
-                star.Height = StarSize;
-                star.Width = StarSize;
+                Symbol.Height = SymbolSize;
+                Symbol.Width = SymbolSize;
             }
         }
 
-        private static void StarBorderSizeChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        private static void SymbolBorderSizeChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            ((Rating)d).OnStarBorderSizeChanged();
+            ((Rating)d).OnSymbolBorderSizeChanged();
         }
 
-        private void OnStarBorderSizeChanged()
+        private void OnSymbolBorderSizeChanged()
         {
-            foreach (Star star in stars)
+            foreach (Symbol Symbol in Symbols)
             {
-                star.SetStarBorderSize(StarBorderSize);
+                Symbol.SetSymbolBorderSize(SymbolBorderSize);
+            }
+        }
+
+        private static void SymbolTypeChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            ((Rating)d).OnSymbolTypeChanged();
+        }
+
+        private void OnSymbolTypeChanged()
+        {
+            foreach (Symbol Symbol in Symbols)
+            {
+                Symbol.SetSymbolType(SymbolType);
             }
         }
 

@@ -65,13 +65,15 @@
       <DependentUpon>Rating.xaml</DependentUpon>
     </Compile>
     <Compile Include="RatingMode.cs" />
-    <Compile Include="Star.xaml.cs">
-      <DependentUpon>Star.xaml</DependentUpon>
+    <Compile Include="Symbol.xaml.cs">
+      <DependentUpon>Symbol.xaml</DependentUpon>
     </Compile>
+    <Compile Include="SymbolsDefinition.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="ClassDiagram.cd" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -82,7 +84,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Star.xaml">
+    <Page Include="Symbol.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -1,17 +1,17 @@
-﻿<UserControl x:Name="Star1" x:Class="Admandev.Rating.Star" x:ClassModifier="internal"
+﻿<UserControl x:Name="Symbol1" x:Class="Admandev.Rating.Symbol" x:ClassModifier="internal"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Admandev.Rating"
              mc:Ignorable="d" 
-             MouseMove="TheStar_MouseMove" Width="40" Height="40" HorizontalAlignment="Left" VerticalAlignment="Top">
+             MouseMove="TheSymbol_MouseMove" Width="40" Height="40" HorizontalAlignment="Left" VerticalAlignment="Top">
     <UserControl.Background>
         <SolidColorBrush Color="White" Opacity="0.0001"/>
     </UserControl.Background>
     <Canvas >
-        <Polygon x:Name="TheStar" Points="9.2,2 11,7 17,7 12,10 14,15 9,12 4,15 6,10 1,7 7,7" Width="{Binding ActualWidth, ElementName=Star1, Mode=OneWay}" Height="{Binding ActualHeight, ElementName=Star1, Mode=OneWay}" Stretch="Fill"  Stroke="Black" StrokeThickness="0.5" RenderTransformOrigin="0.5,0.5">
-            <Polygon.Fill>
+        <Path x:Name="TheSymbol" Data="F1 M 17.416,32.25L 32.910,32.25L 38,18L 43.089,32.25L 58.583,32.25L 45.679,41.494L 51.458,56L 38,48.083L 26.125,56L 30.597,41.710L 17.416,32.25 Z" Width="{Binding ActualWidth, ElementName=Symbol1, Mode=OneWay}" Height="{Binding ActualHeight, ElementName=Symbol1, Mode=OneWay}" Stretch="Fill"  Stroke="Black" StrokeThickness="0.5" RenderTransformOrigin="0.5,0.5">
+            <Path.Fill>
                 <VisualBrush >
                     <VisualBrush.RelativeTransform>
                         <TransformGroup>
@@ -23,20 +23,20 @@
                     </VisualBrush.RelativeTransform>
                     <VisualBrush.Visual>
                         <Grid>
-                            <Canvas x:Name="NormalStarBackground" Background="White" Width="1" Height="1"/>
+                            <Canvas x:Name="NormalSymbolBackground" Background="White" Width="1" Height="1"/>
                             <Canvas Width="1" Height="1">
                                 <Canvas.Background>
                                     <VisualBrush>
                                         <VisualBrush.RelativeTransform>
                                             <TransformGroup>
-                                                <ScaleTransform x:Name="StarTr" CenterY="0.5" ScaleX="0"/>
+                                                <ScaleTransform x:Name="SymbolTr" CenterY="0.5" ScaleX="0"/>
                                                 <SkewTransform CenterY="0.5"/>
                                                 <RotateTransform CenterY="0.5"/>
                                                 <TranslateTransform/>
                                             </TransformGroup>
                                         </VisualBrush.RelativeTransform>
                                         <VisualBrush.Visual>
-                                            <Canvas x:Name="starBackground" Width="1" Height="1" Background="Red"/>
+                                            <Canvas x:Name="symbolBackground" Width="1" Height="1" Background="Red"/>
                                         </VisualBrush.Visual>
                                     </VisualBrush>
                                 </Canvas.Background>
@@ -46,7 +46,7 @@
                         
                     </VisualBrush.Visual>
                 </VisualBrush>
-            </Polygon.Fill>
-        </Polygon>
+            </Path.Fill>
+        </Path>
     </Canvas>
 </UserControl>

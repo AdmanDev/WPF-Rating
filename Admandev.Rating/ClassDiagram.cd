@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="FullSignature">
+  <Class Name="Admandev.Rating.Rating" BaseTypeListCollapsed="true">
+    <Position X="0.5" Y="0.5" Width="3.5" />
+    <NestedTypes>
+      <Delegate Name="Admandev.Rating.Rating.RateDelegate" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Rating.xaml.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Delegate>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>YIgDKAgAFEBBFoAAgVGACgCAQkAAiBQAICANEoQAAQE=</HashCode>
+      <FileName>Rating.xaml.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="RatingMode" />
+      <Property Name="SymbolType" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Field Name="Symbols" />
+    </ShowAsCollectionAssociation>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Admandev.Rating.Symbol" BaseTypeListCollapsed="true">
+    <Position X="6.5" Y="0.5" Width="4.25" />
+    <NestedTypes>
+      <Delegate Name="Admandev.Rating.Symbol.OnValueChangedDelegate" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Symbol.xaml.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Delegate>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAAAAAQAAAAAAgAAAgAAAAMAAAAAABEAAAAgAIgAAAA=</HashCode>
+      <FileName>Symbol.xaml.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Container" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Admandev.Rating.SymbolsDefinition">
+    <Position X="8.5" Y="4.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>gAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAA=</HashCode>
+      <FileName>SymbolsDefinition.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Enum Name="Admandev.Rating.RatingMode">
+    <Position X="6.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAIAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAQA=</HashCode>
+      <FileName>RatingMode.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Admandev.Rating.Symbols">
+    <Position X="6.5" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAACA=</HashCode>
+      <FileName>SymbolsDefinition.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

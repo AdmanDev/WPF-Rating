@@ -4,7 +4,7 @@
 Cette librairie contient un contrôle WPF permettant à l'utilisateur d'évaluer des choses en remplissant des symboles.
 Ce contrôle est entièrement personnalisable: degré de précision, lecture seule, couleur, nombre et taille des symboles...
 
-## Démarrage rapide
+# Démarrage rapide
 - Créez un nouveau projet WPF
 - Référencez le dll **AdmanDev.Rating**
 - Ajoutez la référence XAML
@@ -12,6 +12,7 @@ Ce contrôle est entièrement personnalisable: degré de précision, lecture seu
 - Ajoutez le contrôle
 <code><rating:Rating Name="rating"/> </code>
 
+# Fonctionnalités
 
 ## Degré de précision
 <table>
@@ -24,9 +25,9 @@ Ce contrôle est entièrement personnalisable: degré de précision, lecture seu
 	</thead>
 	<tbody>
 		<tr>
-			<td><img src="https://i.ibb.co/fkbHWjF/Rating.png" alt="standard mode"/></td>
-	  <td><img src="https://i.ibb.co/d7ynb6J/Rating-Half-mode.png" alt="half mode"/></td>
-	  <td><img src="https://i.ibb.co/Hxgxvjd/Rating-Exact-mode.png" alt="exact mode"/></td>
+			<td><img src="doc/Rating.png" alt="standard mode"/></td>
+			<td><img src="doc/modes/Rating - Half mode.png" alt="half mode"/></td>
+			<td><img src="doc/modes/Rating - Exact mode.png" alt="exact mode"/></td>
 		</tr>
 		<tr>
 		<td>Le mode standard permet de sélectionner les symboles entièrement.</td>
@@ -46,70 +47,88 @@ Ce contrôle est entièrement personnalisable: degré de précision, lecture seu
 
 	<code><rating:Rating RatingMode="Exact"/></code>
 
-## Lecture seule
-<img src="https://i.ibb.co/Xx6W1LC/Rating-Read-Only.gif" alt="Rating-Read-Only">
+## Choix du symbole
+<img src="doc/symbols/Rating - Symbols horizontal.png" alt="Rating-Read-Only">
 
-Si vous activer le mode "Read only", l'utilisateur ne pourra pas modifier son vote. Cette propriété est pratique si vous voulez afficher en lecture seule la note.
+Vous pouvez choisir entre 2 symboles : l'étoile ou le coeur.
+
+**Propriété:**
+- La propriété <u>***SymbolType*** *(Symbols)*</u> permet de choisir le type de symbole a afficher.
+
+	Vous avez le choix entre 2 symboles :
+	- Star : affiche des étoiles *(valeur par défaut)*
+	- Heart : affiche des coeurs
+
+	<code><rating:Rating SymbolType="Heart"/></code>
+
+## Lecture seule
+<img src="doc/Rating -Read Only.gif" alt="Rating-Read-Only">
+
+Si vous activer le mode "Read only", l'utilisateur ne pourra pas modifier la note. Cette propriété est pratique si vous voulez afficher en lecture seule la note.
 
 **Propriété:**
 - La propriété <u>***ReadOnly*** *(boolean)*</u> permet d'activer le mode lecture seule.
 <code><rating:Rating ReadOnly="True"/></code>
 *Valeur par défaut : "False"*
+- La propriété <u>***LockAfterRating*** *(boolean)*</u> permet d'autoriser ou pas l'utilisateur de modifier sa note. 
+<code><rating:Rating LockAfterRating="False"/></code>
+*Valeur par défaut : "True"*
+
 
 ## Couleurs 
-<img src="https://i.ibb.co/10ZBQ71/Rating-color-horizontal.png" alt="Rating-color-horizontal" >
+<img src="doc/stars_colors/Rating - color horizontal.png" alt="Rating-color-horizontal" >
 
 Vous pouvez personnaliser la couleur des symboles sélectionnés et la couleur des symboles non sélectionnés.
 
 **Propriétés:**
-- La propriété <u>***SelectedStarColor*** *(Brush)*</u> permet de choisir la couleur des symboles qui ont été sélectionnés.
-<code><rating:Rating SelectedStarColor="#FF00DCF"/></code>
+- La propriété <u>***SelectedSymbolColor*** *(Brush)*</u> permet de choisir la couleur des symboles qui ont été sélectionnés.
+<code><rating:Rating SelectedSymbolColor="#FF00DCF"/></code>
 *Valeur par défaut : "Red"*
 
-- La propriété <u>***NormalStarColor*** *(Brush)*</u> permet de choisir la couleur des symboles non sélectionnés.
-<code><rating:Rating NormalStarColor="#FFF1F1F1"/></code>
+- La propriété <u>***NormalSymbolColor*** *(Brush)*</u> permet de choisir la couleur des symboles non sélectionnés.
+<code><rating:Rating NormalSymbolColor="#FFF1F1F1"/></code>
 *Valeur par défaut : "Transparent"*
 
 
 ## Taille
-<img src="https://i.ibb.co/vvH9TnZ/Rating-Smaller-Horizontal.png" alt="Rating-Smaller-Horizontal" >
+<img src="doc/sizes/Rating - Smaller Horizontal.png" alt="Rating-Smaller-Horizontal" >
 
 Gérez facilement la taille des symboles.
 
 **Propriétés:**
-- La propriété <u>***StarSize*** *(double)*</u> permet de définir la taille des symboles.
-<code><rating:Rating StarSize="55"/></code>
+- La propriété <u>***SymbolSize*** *(double)*</u> permet de définir la taille des symboles.
+<code><rating:Rating SymbolSize="55"/></code>
 *Valeur par défaut : "40"*
 
 
 ## Nombre de symboles
-<img src="https://i.ibb.co/LhF6t2X/Rating-stars-count.png" alt="Rating-stars-count">
+<img src="doc/stars_count/Rating - stars count.png" alt="Rating-stars-count">
 
  Vous pouvez choisir le nombre de symboles affichés.
 
 **Propriétés:**
-- La propriété <u>***StarsCount*** *(double)*</u> permet de définir le nombre de symboles affichés.
-<code><rating:Rating StarsCount="3"/></code>
+- La propriété <u>***SymbolsCount*** *(double)*</u> permet de définir le nombre de symboles affichés.
+<code><rating:Rating SymbolsCount="3"/></code>
 *Valeur par défaut : "5"*
 
 ## Taille des bordures
-<img src="https://i.ibb.co/zrq6WJ0/Rating-border-size-horizontal.png" alt="Rating-border-size-horizontal">
+<img src="doc/border_size/Rating - border size horizontal.png" alt="Rating-border-size-horizontal">
 
 La taille des bordure est personnalisable.
 
 **Propriétés:**
-- La propriété <u>***StarBorderSize*** *(double)*</u> permet de définir la taille de la bordure des symboles
-<code><rating:Rating StarBorderSize="2"/></code>
+- La propriété <u>***SymbolBorderSize*** *(double)*</u> permet de définir la taille de la bordure des symboles
+<code><rating:Rating SymbolBorderSize="2"/></code>
 *Valeur par défaut : "0.5"*
 
 ## Espace entre les symboles
-<img src="https://i.ibb.co/6y2t6s2/Rating-Stars-spacing-horizontal.png" alt="Rating-Stars-spacing-horizontal">
+<img src="doc/stars_spacing/Rating - Stars spacing horizontal.png" alt="Rating-Stars-spacing-horizontal">
 
 Gérez facilement l'espace entre les symboles.
 
 **Propriétés:**
-- La propriété <u>***StarSpacing*** *(double)*</u> permet de gérer l'espace entre les symboles.
-<code><rating:Rating StarSpacing="20"/></code>
+- La propriété <u>***SymbolSpacing*** *(double)*</u> permet de gérer l'espace entre les symboles.
+<code><rating:Rating SymbolSpacing="20"/></code>
 *Valeur par défaut : "5"*
 
 ## Événements
@@ -122,3 +141,6 @@ Gérez facilement l'espace entre les symboles.
 	
 	* *rate* : Nombre de symboles (entier ou non) de sélectionnés 
 	* *percentRate* : Pourcentage de symboles sélectionnés 
+
+# Diagramme de classes
+<img src="doc/ClassDiagram.png" alt="Diagramme de classe">
